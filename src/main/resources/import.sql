@@ -5,7 +5,7 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-insert into Monitor (id, name, brand) values(1, 'UltraSharp U2720Q', 'Dell');
-insert into Monitor (id, name, brand) values(2, 'UltraGear 27GL850', 'LG');
-insert into Monitor (id, name, brand) values(3, 'Odyssey G7', 'Samsung');
-insert into Monitor (id, name, brand) values(4, 'ROG Swift PG259QN', 'ASUS');
+insert into Monitor (id, name, brand) values(nextval('monitor_seq'), 'UltraSharp U2720Q', 'Dell');
+insert into Monitor (id, name, brand) values(nextval('monitor_seq'), 'UltraGear 27GL850', 'LG');
+insert into Monitor (id, name, brand) values(nextval('monitor_seq'), 'Odyssey G7', 'Samsung');
+insert into Monitor (id, name, brand) values(nextval('monitor_seq'), 'ROG Swift PG259QN', 'ASUS');
