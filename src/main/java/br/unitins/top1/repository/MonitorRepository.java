@@ -9,6 +9,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class MonitorRepository implements PanacheRepository<Monitor> {
     public List<Monitor> findByNome(String nome) {
-        return find("nome LIKE ?", "%" + nome + "%").list();
+        return find("nome LIKE ?1", "%" + nome + "%").list();
     }
 }
