@@ -22,6 +22,7 @@ public class MonitorServiceImpl implements MonitorService {
     }
 
     @Override
+    @Transactional 
     public void update(long id, Monitor monitor) {
         Monitor monitorexisting = repository.findById(id);
         if (monitorexisting == null) {
@@ -50,5 +51,10 @@ public class MonitorServiceImpl implements MonitorService {
     @Override
     public List<Monitor> listAll() {
         return repository.listAll();
+    }
+
+    @Override
+    public List<Monitor> findByBrand(String brand) {
+        return repository.findByBrand(brand);
     }
 }

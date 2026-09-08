@@ -23,5 +23,4 @@ public class Monitor extends DefaultEntity{
         this.brand = brand;
     }
 
-
 }

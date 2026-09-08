@@ -10,5 +10,6 @@ public interface MonitorService {
     void delete(long id);
     Monitor findById(long id);
     List<Monitor> findByNome(String nome);
+    List<Monitor> findByBrand(String brand);
     List<Monitor> listAll();
 }

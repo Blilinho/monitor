@@ -11,4 +11,9 @@ public class MonitorRepository implements PanacheRepository<Monitor> {
     public List<Monitor> findByNome(String nome) {
         return find("nome LIKE ?1", "%" + nome + "%").list();
     }
+
+    public List<Monitor> findByBrand(String brand) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByBrand'");
+    }
 }

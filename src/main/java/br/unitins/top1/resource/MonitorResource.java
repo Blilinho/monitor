@@ -29,6 +29,18 @@ public class MonitorResource {
         return service.findById(id);
     }
 
+    @GET
+    @Path("/search/{nome}")
+    public List<Monitor> findByNome(@PathParam("nome") String nome) {
+        return service.findByNome(nome);
+    }
+
+    @GET
+    @Path("/search/brand/{brand}")
+    public List<Monitor> findByBrand(@PathParam("brand") String brand) {
+        return service.findByBrand(brand);
+    }
+
     @POST
     public Monitor createMonitor(Monitor monitor) {
         return service.create(monitor);
@@ -37,19 +49,14 @@ public class MonitorResource {
     @PUT
     @Path("/{id}")
     public void updateMonitor(@PathParam("id") Long id, Monitor monitor) {
-        Monitor monitorexisting = service.findById(id);
-        if (monitorexisting == null) {
-            throw new RuntimeException("Monitor not found");
-        }
-        monitorexisting.setName(monitor.getName());
-        monitorexisting.setBrand(monitor.getBrand());
+        service.update(id, monitor);
     }
 
     @DELETE
     @Path("/{id}")
-
     public void deleteMonitor(@PathParam("id") Long id) {
         service.delete(id);
     }
+
 }
 
