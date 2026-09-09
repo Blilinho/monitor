@@ -36,9 +36,9 @@ public class MonitorResource {
     }
 
     @GET
-    @Path("/search/brand/{brand}")
-    public List<Monitor> findByBrand(@PathParam("brand") String brand) {
-        return service.findByBrand(brand);
+    @Path("/search/brand/{marca}")
+    public List<Monitor> findByBrand(@PathParam("marca") String marca) {
+        return service.findByBrand(marca);
     }
 
     @POST

@@ -9,11 +9,10 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class MonitorRepository implements PanacheRepository<Monitor> {
     public List<Monitor> findByNome(String nome) {
-        return find("nome LIKE ?1", "%" + nome + "%").list();
+        return find("name LIKE ?1", "%" + nome + "%").list();
     }
 
-    public List<Monitor> findByBrand(String brand) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByBrand'");
+    public List<Monitor> findByBrand(String marca) {
+        return find("brand LIKE ?1", "%" + marca + "%").list();
     }
 }
