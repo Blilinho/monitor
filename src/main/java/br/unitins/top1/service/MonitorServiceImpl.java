@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 @ApplicationScoped
 public class MonitorServiceImpl implements MonitorService {
 
-    @Inject 
+    @Inject
     MonitorRepository repository;
 
     @Override
@@ -22,14 +22,14 @@ public class MonitorServiceImpl implements MonitorService {
     }
 
     @Override
-    @Transactional 
+    @Transactional
     public void update(long id, Monitor monitor) {
-        Monitor monitorexisting = repository.findById(id);
-        if (monitorexisting == null) {
+        Monitor existingMonitor = repository.findById(id);
+        if (existingMonitor == null) {
             throw new RuntimeException("Monitor not found");
         }
-        monitorexisting.setName(monitor.getName());
-        monitorexisting.setBrand(monitor.getBrand());
+        existingMonitor.setName(monitor.getName());
+        existingMonitor.setBrand(monitor.getBrand());
     }
 
     @Override
@@ -44,17 +44,17 @@ public class MonitorServiceImpl implements MonitorService {
     }
 
     @Override
-    public List<Monitor> findByNome(String nome) {
-        return repository.findByNome(nome);
+    public List<Monitor> findByName(String nome) {
+        return repository.findByName(nome);
+    }
+
+    @Override
+    public List<Monitor> findByBrand(String marca) {
+        return repository.findByBrand(marca);
     }
 
     @Override
     public List<Monitor> listAll() {
         return repository.listAll();
-    }
-
-    @Override
-    public List<Monitor> findByBrand(String brand) {
-        return repository.findByBrand(brand);
     }
 }
