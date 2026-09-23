@@ -23,13 +23,15 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     @Transactional
-    public void update(long id, Monitor monitor) {
+    public Monitor update(long id, Monitor monitor) {
         Monitor existingMonitor = repository.findById(id);
         if (existingMonitor == null) {
             throw new RuntimeException("Monitor not found");
         }
         existingMonitor.setName(monitor.getName());
         existingMonitor.setBrand(monitor.getBrand());
+        repository.persist(existingMonitor);
+        return existingMonitor;
     }
 
     @Override

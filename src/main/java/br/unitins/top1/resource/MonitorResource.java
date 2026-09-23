@@ -1,7 +1,5 @@
 package br.unitins.top1.resource;
 
-import java.util.List;
-
 import br.unitins.top1.dto.MonitorDTO;
 import br.unitins.top1.dto.MonitorResponseDTO;
 import br.unitins.top1.model.Monitor;
@@ -17,6 +15,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/monitors")
 @Produces(MediaType.APPLICATION_JSON)
@@ -27,52 +26,55 @@ public class MonitorResource {
     MonitorService service;
 
     @GET
-    public List<MonitorResponseDTO> list() {
-        return service.listAll().stream()
+    public Response list() {
+        return Response.ok(service.listAll().stream()
                 .map(MonitorResponseDTO::fromEntity)
-                .toList();
+                .toList()).build();
     }
 
     @GET
     @Path("/{id}")
-    public MonitorResponseDTO findIdMonitor(@PathParam("id") Long id) {
-        return MonitorResponseDTO.fromEntity(service.findById(id));
+    public Response findId(@PathParam("id") Long id) {
+        return Response.ok(MonitorResponseDTO.fromEntity(service.findById(id))).build();
     }
 
     @GET
     @Path("/search/{nome}")
-    public List<MonitorResponseDTO> findByNome(@PathParam("nome") String nome) {
-        return service.findByName(nome).stream().map(MonitorResponseDTO::fromEntity).toList();
+    public Response findByNome(@PathParam("nome") String nome) {
+        return Response.ok(service.findByName(nome).stream().map(MonitorResponseDTO::fromEntity).toList()).build();
     }
 
     @GET
     @Path("/search/brand/{marca}")
-    public List<MonitorResponseDTO> findByBrand(@PathParam("marca") String marca) {
-        return service.findByBrand(marca).stream().map(MonitorResponseDTO::fromEntity).toList();
+    public Response findByBrand(@PathParam("marca") String marca) {
+        return Response.ok(service.findByBrand(marca).stream().map(MonitorResponseDTO::fromEntity).toList()).build();
     }
 
     @POST
-    public MonitorResponseDTO create(MonitorDTO dto) {
+    public Response create(MonitorDTO dto) {
     Monitor monitor = new Monitor();
     monitor.setName(dto.name());
     monitor.setBrand(dto.brand());
     monitor.setPanelType(TipoPainel.fromId(dto.idPanelType()));
-    return MonitorResponseDTO.fromEntity(service.create(monitor));
+    return Response.status(Response.Status.CREATED).entity(MonitorResponseDTO.fromEntity(service.create(monitor))).build();
 }
 
     @PUT
     @Path("/{id}")
-    public void update(@PathParam("id") Long id, MonitorDTO dto) {
+    public Response update(@PathParam("id") Long id, MonitorDTO dto) {
     Monitor monitor = new Monitor();
     monitor.setName(dto.name());
     monitor.setBrand(dto.brand());
     monitor.setPanelType(TipoPainel.fromId(dto.idPanelType()));
+
     service.update(id, monitor);
+    return Response.status(Response.Status.OK).entity(MonitorResponseDTO.fromEntity(service.update(id, monitor))).build();
 }
 
     @DELETE
     @Path("/{id}")
-    public void deleteMonitor(@PathParam("id") Long id) {
+    public Response deleteMonitor(@PathParam("id") Long id) {
         service.delete(id);
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }
