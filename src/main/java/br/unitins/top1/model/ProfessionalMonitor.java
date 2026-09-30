@@ -7,7 +7,6 @@ public class ProfessionalMonitor extends Monitor {
     
     private String colorAccuracy; 
     private Boolean heightAdjustment; 
-    private PanelType panelType;
     
     public String getColorAccuracy() {
         return colorAccuracy;
@@ -21,12 +20,4 @@ public class ProfessionalMonitor extends Monitor {
     public void setHeightAdjustment(Boolean heightAdjustment) {
         this.heightAdjustment = heightAdjustment;
     }
-    public PanelType getPanelType() {
-        return panelType;
-    }
-    public void setPanelType(PanelType panelType) {
-        this.panelType = panelType;
-    } 
-
-    
 }

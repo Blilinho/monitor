@@ -39,42 +39,44 @@ public class MonitorResource {
     }
 
     @GET
-    @Path("/search/{nome}")
-    public Response findByNome(@PathParam("nome") String nome) {
-        return Response.ok(service.findByName(nome).stream().map(MonitorResponseDTO::fromEntity).toList()).build();
+    @Path("/search/{name}")
+    public Response findByName(@PathParam("name") String name) {
+        return Response.ok(service.findByName(name).stream()
+                .map(MonitorResponseDTO::fromEntity).toList()).build();
     }
 
     @GET
-    @Path("/search/brand/{marca}")
-    public Response findByBrand(@PathParam("marca") String marca) {
-        return Response.ok(service.findByBrand(marca).stream().map(MonitorResponseDTO::fromEntity).toList()).build();
+    @Path("/search/brand/{brand}")
+    public Response findByBrand(@PathParam("brand") String brand) {
+        return Response.ok(service.findByBrand(brand).stream()
+                .map(MonitorResponseDTO::fromEntity).toList()).build();
     }
 
     @POST
     public Response create(MonitorDTO dto) {
-    Monitor monitor = new Monitor();
-    monitor.setName(dto.name());
-    monitor.setBrand(dto.brand());
-    monitor.setPanelType(PanelType.fromId(dto.idPanelType()));
-    return Response.status(Response.Status.CREATED).entity(MonitorResponseDTO.fromEntity(service.create(monitor))).build();
-}
+        Monitor monitor = new Monitor();
+        monitor.setName(dto.name());
+        monitor.setBrand(dto.brand());
+        monitor.setPanelType(PanelType.fromId(dto.idPanelType()));
+        return Response.status(Response.Status.CREATED)
+                .entity(MonitorResponseDTO.fromEntity(service.create(monitor))).build();
+    }
 
     @PUT
     @Path("/{id}")
     public Response update(@PathParam("id") Long id, MonitorDTO dto) {
-    Monitor monitor = new Monitor();
-    monitor.setName(dto.name());
-    monitor.setBrand(dto.brand());
-    monitor.setPanelType(PanelType.fromId(dto.idPanelType()));
-
-    service.update(id, monitor);
-    return Response.status(Response.Status.OK).entity(MonitorResponseDTO.fromEntity(service.update(id, monitor))).build();
-}
+        Monitor monitor = new Monitor();
+        monitor.setName(dto.name());
+        monitor.setBrand(dto.brand());
+        monitor.setPanelType(PanelType.fromId(dto.idPanelType()));
+        Monitor updated = service.update(id, monitor);
+        return Response.ok(MonitorResponseDTO.fromEntity(updated)).build();
+    }
 
     @DELETE
     @Path("/{id}")
     public Response deleteMonitor(@PathParam("id") Long id) {
         service.delete(id);
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 }
