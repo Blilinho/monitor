@@ -5,13 +5,14 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-insert into Monitor (name, brand, panelType) values('UltraSharp U2720Q', 'Dell', 'LED');
-insert into Monitor (name, brand, panelType) values('UltraGear 27GL850', 'LG', 'OLED');
-insert into Monitor (name, brand, panelType) values('Odyssey G7', 'Samsung', 'QLED');
-insert into Monitor (name, brand, panelType) values('ROG Swift PG259QN', 'ASUS', 'LED');
-insert into Monitor (name, brand, panelType) values('Predator X34', 'Acer', 'IPS');
-insert into Monitor (name, brand, panelType) values('AORUS FI27Q', 'Gigabyte', 'TN');
-insert into Monitor (name, brand, panelType) values('ProArt Display PA278QV', 'ASUS', 'LED');
-insert into Monitor (name, brand, panelType) values('Mobiuz EX2510', 'BenQ', 'IPS');
-insert into Monitor (name, brand, panelType) values('ThinkVision P27h-20', 'Lenovo', 'TN');
-insert into Monitor (name, brand, panelType) values('Alienware AW2521H', 'Dell', 'OLED');
+-- insert into Monitor (id, name, brand, price, screensize) values (nextval('monitor_seq'), 'UltraSharp U2720Q', 'Dell', 3500.0, 27.0);
+-- insert into ProfessionalMonitor (id, coloraccuracy, heightadjustment, paneltype) values (currval('monitor_seq'), '99% sRGB', true, 1);
+
+insert into Monitor (id, name, brand, price, screensize) values (nextval('monitor_seq'), 'UltraGear 27GL850', 'LG', 2800.0, 27.0);
+insert into GamingMonitor (id, refreshrate, responsetime, gsyncsupport) values (currval('monitor_seq'), 144, 1.0, true);
+
+insert into Monitor (id, name, brand, price, screensize) values (nextval('monitor_seq'), 'Odyssey G7', 'Samsung', 4200.0, 27.0);
+insert into GamingMonitor (id, refreshrate, responsetime, gsyncsupport) values (currval('monitor_seq'), 240, 1.0, true);
+
+insert into Monitor (id, name, brand, price, screensize) values (nextval('monitor_seq'), 'ROG Swift PG259QN', 'ASUS', 5100.0, 24.5);
+insert into GamingMonitor (id, refreshrate, responsetime, gsyncsupport) values (currval('monitor_seq'), 360, 1.0, true);

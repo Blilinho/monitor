@@ -1,21 +1,21 @@
 package br.unitins.top1.model.converterjpa;
 
-import br.unitins.top1.model.TipoPainel;
+import br.unitins.top1.model.PanelType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class TipoPainelConverter implements AttributeConverter<TipoPainel, Integer> {
+public class TipoPainelConverter implements AttributeConverter<PanelType, Integer> {
 
     @Override
-    public Integer convertToDatabaseColumn(TipoPainel tipoPainel) {
+    public Integer convertToDatabaseColumn(PanelType tipoPainel) {
         if (tipoPainel == null) return null;
         return tipoPainel.getId();
     }
 
     @Override
-    public TipoPainel convertToEntityAttribute(Integer id) {
+    public PanelType convertToEntityAttribute(Integer id) {
         if (id == null) return null;
-        return TipoPainel.fromId(id);
+        return PanelType.fromId(id);
     }
 }

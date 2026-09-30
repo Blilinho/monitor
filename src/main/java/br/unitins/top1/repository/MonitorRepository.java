@@ -15,4 +15,5 @@ public class MonitorRepository implements PanacheRepository<Monitor> {
     public List<Monitor> findByBrand(String marca) {
         return find("upper(brand) LIKE upper(?1)", "%" + marca + "%").list();
     }
+    
 }

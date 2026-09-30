@@ -3,7 +3,7 @@ package br.unitins.top1.resource;
 import br.unitins.top1.dto.MonitorDTO;
 import br.unitins.top1.dto.MonitorResponseDTO;
 import br.unitins.top1.model.Monitor;
-import br.unitins.top1.model.TipoPainel;
+import br.unitins.top1.model.PanelType;
 import br.unitins.top1.service.MonitorService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -55,7 +55,7 @@ public class MonitorResource {
     Monitor monitor = new Monitor();
     monitor.setName(dto.name());
     monitor.setBrand(dto.brand());
-    monitor.setPanelType(TipoPainel.fromId(dto.idPanelType()));
+    monitor.setPanelType(PanelType.fromId(dto.idPanelType()));
     return Response.status(Response.Status.CREATED).entity(MonitorResponseDTO.fromEntity(service.create(monitor))).build();
 }
 
@@ -65,7 +65,7 @@ public class MonitorResource {
     Monitor monitor = new Monitor();
     monitor.setName(dto.name());
     monitor.setBrand(dto.brand());
-    monitor.setPanelType(TipoPainel.fromId(dto.idPanelType()));
+    monitor.setPanelType(PanelType.fromId(dto.idPanelType()));
 
     service.update(id, monitor);
     return Response.status(Response.Status.OK).entity(MonitorResponseDTO.fromEntity(service.update(id, monitor))).build();
