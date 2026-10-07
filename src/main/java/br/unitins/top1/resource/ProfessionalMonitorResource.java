@@ -3,6 +3,7 @@ package br.unitins.top1.resource;
 import br.unitins.top1.dto.ProfessionalMonitorDTO;
 import br.unitins.top1.service.ProfessionalMonitorService;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -34,13 +35,13 @@ public class ProfessionalMonitorResource {
     }
 
     @POST
-    public Response create(ProfessionalMonitorDTO dto) {
+    public Response create(@Valid ProfessionalMonitorDTO dto) {
         return Response.status(Response.Status.CREATED).entity(service.create(dto)).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, ProfessionalMonitorDTO dto) {
+    public Response update(@PathParam("id") Long id, @Valid ProfessionalMonitorDTO dto) {
         return Response.ok(service.update(id, dto)).build();
     }
 

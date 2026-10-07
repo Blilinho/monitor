@@ -3,6 +3,7 @@ package br.unitins.top1.resource;
 import br.unitins.top1.dto.GamingMonitorDTO;
 import br.unitins.top1.service.GamingMonitorService;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -21,7 +22,7 @@ public class GamingMonitorResource {
     GamingMonitorService service;
 
     @POST
-    public Response insert(GamingMonitorDTO dto) {
+    public Response insert(@Valid GamingMonitorDTO dto) {
         return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 

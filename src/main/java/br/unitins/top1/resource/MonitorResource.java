@@ -6,6 +6,7 @@ import br.unitins.top1.model.Monitor;
 import br.unitins.top1.model.PanelType;
 import br.unitins.top1.service.MonitorService;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -53,7 +54,7 @@ public class MonitorResource {
     }
 
     @POST
-    public Response create(MonitorDTO dto) {
+    public Response create(@Valid MonitorDTO dto) {
         Monitor monitor = new Monitor();
         monitor.setName(dto.name());
         monitor.setBrand(dto.brand());
@@ -64,7 +65,7 @@ public class MonitorResource {
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, MonitorDTO dto) {
+    public Response update(@PathParam("id") Long id, @Valid MonitorDTO dto) {
         Monitor monitor = new Monitor();
         monitor.setName(dto.name());
         monitor.setBrand(dto.brand());
