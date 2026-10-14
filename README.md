@@ -2,7 +2,7 @@
 
 Projeto desenvolvido para a disciplina de **Tópicos em Programação I** (UNITINS - Ciência da Computação / Sistemas de Informação), ministrada pelo **Prof. Jânio Elias Teixeira Júnior**.
 
-O sistema consiste em um web service REST construído com **Java 25**, **Quarkus 3.38.3**, **Hibernate ORM com Panache** e **PostgreSQL**, seguindo rigorosamente o padrão arquitetural em camadas ensinado pelo professor.
+O sistema consiste em um web service REST construído com **Java 25**, **Quarkus 3.38.3**, **Hibernate ORM com Panache** e **PostgreSQL**, seguindo o padrão arquitetural em camadas ensinado pelo professor.
 
 ---
 
@@ -22,7 +22,7 @@ O sistema consiste em um web service REST construído com **Java 25**, **Quarkus
 
 ---
 
-## 🏛️ Padrão Arquitetural das Camadas (Modelo do Professor)
+## 🏛️ Padrão Arquitetural das Camadas
 
 ```
 src/main/java/br/unitins/top1/
