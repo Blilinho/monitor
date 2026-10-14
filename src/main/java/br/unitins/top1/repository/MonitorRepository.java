@@ -8,11 +8,16 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class MonitorRepository implements PanacheRepository<Monitor> {
+
     public List<Monitor> findByName(String name) {
         return find("upper(name) LIKE upper(?1)", "%" + name + "%").list();
     }
 
-    public List<Monitor> findByBrand(String brand) {
-        return find("upper(brand) LIKE upper(?1)", "%" + brand + "%").list();
+    public List<Monitor> findByBrandName(String brandName) {
+        return find("upper(brand.name) LIKE upper(?1)", "%" + brandName + "%").list();
+    }
+
+    public List<Monitor> findByBrandId(Long brandId) {
+        return find("brand.id = ?1", brandId).list();
     }
 }

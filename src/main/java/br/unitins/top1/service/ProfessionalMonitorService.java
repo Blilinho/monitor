@@ -2,13 +2,13 @@ package br.unitins.top1.service;
 
 import java.util.List;
 
-import br.unitins.top1.dto.ProfessionalMonitorDTO;
-import br.unitins.top1.dto.ProfessionalMonitorResponseDTO;
+import br.unitins.top1.model.ProfessionalMonitor;
 
 public interface ProfessionalMonitorService {
-    ProfessionalMonitorResponseDTO create(ProfessionalMonitorDTO dto);
-    ProfessionalMonitorResponseDTO update(Long id, ProfessionalMonitorDTO dto);
+    ProfessionalMonitor create(ProfessionalMonitor monitor);
+    void update(Long id, ProfessionalMonitor monitor);
     void delete(Long id);
-    ProfessionalMonitorResponseDTO findById(Long id);
-    List<ProfessionalMonitorResponseDTO> findAll();
+    ProfessionalMonitor findById(Long id);
+    List<ProfessionalMonitor> findByName(String name);
+    List<ProfessionalMonitor> findAll();
 }

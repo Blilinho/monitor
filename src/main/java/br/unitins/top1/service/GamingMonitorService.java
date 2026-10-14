@@ -1,13 +1,14 @@
 package br.unitins.top1.service;
 
-import br.unitins.top1.dto.GamingMonitorDTO;
-import br.unitins.top1.dto.GamingMonitorResponseDTO;
 import java.util.List;
 
+import br.unitins.top1.model.GamingMonitor;
+
 public interface GamingMonitorService {
-    GamingMonitorResponseDTO insert(GamingMonitorDTO dto);
-    GamingMonitorResponseDTO update(Long id, GamingMonitorDTO dto);
+    GamingMonitor create(GamingMonitor monitor);
+    void update(Long id, GamingMonitor monitor);
     void delete(Long id);
-    GamingMonitorResponseDTO findById(Long id);
-    List<GamingMonitorResponseDTO> findAll();
+    GamingMonitor findById(Long id);
+    List<GamingMonitor> findByName(String name);
+    List<GamingMonitor> findAll();
 }

@@ -15,8 +15,11 @@ public class RootResource {
     @GET
     public Map<String, Object> home() {
         return Map.of(
-                "message", "Monitor API is running",
+                "message", "Monitor E-Commerce Admin API is running",
                 "endpoints", List.of(
+                        "/brands",
+                        "/features",
+                        "/accessories",
                         "/monitors",
                         "/gaming-monitors",
                         "/professional-monitors",

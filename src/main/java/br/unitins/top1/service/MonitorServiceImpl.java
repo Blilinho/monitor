@@ -2,6 +2,7 @@ package br.unitins.top1.service;
 
 import java.util.List;
 
+import br.unitins.top1.model.HardwareSpec;
 import br.unitins.top1.model.Monitor;
 import br.unitins.top1.repository.MonitorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -24,40 +25,65 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     @Transactional
-    public Monitor update(long id, Monitor monitor) {
-        Monitor existingMonitor = repository.findById(id);
-        if (existingMonitor == null) {
+    public void update(Long id, Monitor monitor) {
+        Monitor existing = repository.findById(id);
+        if (existing == null) {
             throw new NotFoundException("Monitor not found.");
         }
-        existingMonitor.setName(monitor.getName());
-        existingMonitor.setBrand(monitor.getBrand());
-        existingMonitor.setPanelType(monitor.getPanelType());
-        existingMonitor.setPrice(monitor.getPrice());
-        existingMonitor.setScreenSize(monitor.getScreenSize());
-        return existingMonitor;
+
+        existing.setName(monitor.getName());
+        existing.setPrice(monitor.getPrice());
+        existing.setScreenSize(monitor.getScreenSize());
+        existing.setPanelType(monitor.getPanelType());
+        existing.setBrand(monitor.getBrand());
+
+        // Update 1:1 composition (HardwareSpec)
+        if (monitor.getHardwareSpec() != null) {
+            if (existing.getHardwareSpec() == null) {
+                existing.setHardwareSpec(monitor.getHardwareSpec());
+            } else {
+                existing.getHardwareSpec().setWeight(monitor.getHardwareSpec().getWeight());
+                existing.getHardwareSpec().setDimensions(monitor.getHardwareSpec().getDimensions());
+                existing.getHardwareSpec().setPowerConsumption(monitor.getHardwareSpec().getPowerConsumption());
+            }
+        } else {
+            existing.setHardwareSpec(null);
+        }
+
+        // Update N:N features and accessories
+        existing.setFeatures(monitor.getFeatures());
+        existing.setCompatibleAccessories(monitor.getCompatibleAccessories());
     }
 
     @Override
     @Transactional
-    public void delete(long id) {
+    public void delete(Long id) {
         if (!repository.deleteById(id)) {
             throw new NotFoundException("Monitor not found.");
         }
     }
 
     @Override
-    public Monitor findById(long id) {
+    public Monitor findById(Long id) {
         Monitor monitor = repository.findById(id);
-        if (monitor == null) throw new NotFoundException("Monitor not found.");
+        if (monitor == null) {
+            throw new NotFoundException("Monitor not found.");
+        }
         return monitor;
     }
 
     @Override
-    public List<Monitor> findByName(String name) { return repository.findByName(name); }
+    public List<Monitor> findByName(String name) {
+        return repository.findByName(name);
+    }
 
     @Override
-    public List<Monitor> findByBrand(String brand) { return repository.findByBrand(brand); }
+    public List<Monitor> findByBrandId(Long brandId) {
+        return repository.findByBrandId(brandId);
+    }
 
     @Override
-    public List<Monitor> listAll() { return repository.listAll(); }
+    public List<Monitor> findAll() {
+        return repository.listAll();
+    }
 }
